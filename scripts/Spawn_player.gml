@@ -10,7 +10,7 @@ if global.free_roam {
         x_in = room_width;
         y_in = global.y_out;
     }
-    else if global.y_out <= 200 { // Exited from top
+    else if global.y_out <= 0 { // Exited from top
         x_in = global.x_out;
         y_in = room_height;
     }
@@ -24,7 +24,7 @@ if global.free_roam {
     }  
 }
 else {
-    x_in = 50;
+    x_in = 100;
     y_in = 280;
 }
 

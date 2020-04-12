@@ -8,7 +8,9 @@
   <sprites name="sprites">
     <sprite>sprites\sp_mockup_player</sprite>
     <sprite>sprites\sp_mockup_wall</sprite>
+    <sprite>sprites\sp_mockup_wall_64</sprite>
     <sprite>sprites\sp_pit</sprite>
+    <sprite>sprites\sp_mockup_pit_64</sprite>
     <sprite>sprites\sp_mockup_goal</sprite>
     <sprite>sprites\sp_1</sprite>
     <sprite>sprites\sp_2</sprite>
