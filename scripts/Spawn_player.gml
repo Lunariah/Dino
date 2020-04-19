@@ -24,8 +24,8 @@ if global.free_roam {
     }  
 }
 else {
-    x_in = 50;
-    y_in = 430;
+    x_in = 64;
+    y_in = 416;
 }
 
 instance_create(x_in, y_in, ob_mockup_player);
