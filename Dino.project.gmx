@@ -43,6 +43,7 @@
     <room>rooms\room_2</room>
     <room>rooms\room_3</room>
     <room>rooms\room_test</room>
+    <room>rooms\room5</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

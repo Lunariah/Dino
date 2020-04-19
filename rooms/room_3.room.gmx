@@ -61,11 +61,6 @@
     <instance objName="ob_mockup_wall" x="64" y="32" name="inst_6F625B11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_mockup_wall" x="96" y="32" name="inst_2D866B3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_mockup_wall" x="128" y="32" name="inst_3A55280E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_mockup_wall" x="0" y="64" name="inst_D693659A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_mockup_wall" x="32" y="64" name="inst_D1D9D690" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_mockup_wall" x="64" y="64" name="inst_7102BC61" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_mockup_wall" x="96" y="64" name="inst_4FC7D305" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_mockup_wall" x="128" y="64" name="inst_EF6FE108" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_pit" x="0" y="160" name="inst_8B5CE238" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_pit" x="32" y="160" name="inst_9DD61F3D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_pit" x="64" y="160" name="inst_ACBEEC2E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -204,7 +199,6 @@
     <instance objName="ob_mockup_collectable1" x="288" y="64" name="inst_2E052E0A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_mockup_collectable2" x="288" y="256" name="inst_DEA06A70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_mockup_collectable3" x="288" y="512" name="inst_CFB7BCE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_mockup_wall" x="-32" y="64" name="inst_245E49C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_mockup_wall" x="-32" y="448" name="inst_B6646ABF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
