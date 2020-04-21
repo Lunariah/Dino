@@ -7,6 +7,8 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sp_mockup_player</sprite>
+    <sprite>sprites\sp_player_idle</sprite>
+    <sprite>sprites\sp_player_running</sprite>
     <sprite>sprites\sp_mockup_wall</sprite>
     <sprite>sprites\sp_mockup_wall_64</sprite>
     <sprite>sprites\sp_pit</sprite>
@@ -15,12 +17,20 @@
     <sprite>sprites\sp_1</sprite>
     <sprite>sprites\sp_2</sprite>
     <sprite>sprites\sp_3</sprite>
-    <sprite>sprites\sp_mockup_collectable</sprite>
-    <sprite>sprites\sprite8</sprite>
     <sprite>sprites\sp_4</sprite>
     <sprite>sprites\sp_5</sprite>
+    <sprite>sprites\sp_mockup_collectable</sprite>
+    <sprite>sprites\sprite8</sprite>
+    <sprite>sprites\sp_tube</sprite>
+    <sprite>sprites\sp_captive</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_room1</background>
+    <background>background\bg_room2</background>
+    <background>background\bg_room3</background>
+    <background>background\bg_room4</background>
+    <background>background\bg_room5</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\Spawn_player.gml</script>
@@ -29,7 +39,6 @@
   <objects name="objects">
     <object>objects\ob_mockup_wall</object>
     <object>objects\ob_mockup_player</object>
-    <object>objects\object10</object>
     <object>objects\ob_pit</object>
     <object>objects\ob_mockup_goal</object>
     <object>objects\ob_goto_room1</object>
@@ -42,6 +51,7 @@
     <object>objects\ob_mockup_collectable3</object>
     <object>objects\ob_mockup_collectable4</object>
     <object>objects\ob_mockup_collectable5</object>
+    <object>objects\ob_tube</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
