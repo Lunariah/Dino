@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.collectable1 == true instance_destroy();
+            <string>if global.collectable5 == true instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -48,10 +48,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.collectable1 = true;
+            <string>global.collectable5 = true;
 instance_destroy();
 
-if global.collectable2 and global.collectable3 and global.collectable4 and global.collectable5
+if global.collectable1 and global.collectable2 and global.collectable3 and global.collectable4
     game_end();
 </string>
           </argument>

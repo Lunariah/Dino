@@ -18,6 +18,7 @@
     <sprite>sprites\sp_mockup_collectable</sprite>
     <sprite>sprites\sprite8</sprite>
     <sprite>sprites\sp_4</sprite>
+    <sprite>sprites\sp_5</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -35,18 +36,20 @@
     <object>objects\ob_goto_room2</object>
     <object>objects\ob_goto_room3</object>
     <object>objects\ob_goto_room4</object>
+    <object>objects\ob_goto_room5</object>
     <object>objects\ob_mockup_collectable1</object>
     <object>objects\ob_mockup_collectable2</object>
     <object>objects\ob_mockup_collectable3</object>
+    <object>objects\ob_mockup_collectable4</object>
+    <object>objects\ob_mockup_collectable5</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
     <room>rooms\room_1</room>
     <room>rooms\room_2</room>
     <room>rooms\room_3</room>
-    <room>rooms\room_test</room>
     <room>rooms\room_4</room>
-    <room>rooms\room5</room>
+    <room>rooms\room_5</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
