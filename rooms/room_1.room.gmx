@@ -182,23 +182,6 @@ global.free_roam = true;</code>
     <instance objName="ob_pit" x="928" y="192" name="inst_9B517829" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_pit" x="960" y="192" name="inst_06E3FAA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_pit" x="992" y="192" name="inst_658ED146" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="480" y="736" name="inst_FC88238A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="512" y="736" name="inst_D31167E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="544" y="736" name="inst_6E2F297C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="576" y="736" name="inst_6D4BE9EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="608" y="736" name="inst_9317EA88" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="640" y="736" name="inst_043C63F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="672" y="736" name="inst_AF7512E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="704" y="736" name="inst_21C5C4E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="736" y="736" name="inst_8C45C4B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="768" y="736" name="inst_E903CD4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="800" y="736" name="inst_BE2983A8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="832" y="736" name="inst_DB210FC0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="864" y="736" name="inst_0356E4A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="896" y="736" name="inst_B7DFC757" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="928" y="736" name="inst_87EC06EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="960" y="736" name="inst_7945957E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="ob_pit" x="992" y="736" name="inst_176DC05E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_goto_room2" x="0" y="-128" name="inst_7A5EDCEC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_goto_room2" x="64" y="-128" name="inst_7DC158BA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_goto_room2" x="192" y="-128" name="inst_5B729DA4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -236,6 +219,15 @@ global.free_roam = true;</code>
     <instance objName="ob_pit" x="320" y="192" name="inst_DB1CE054" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_pit" x="320" y="160" name="inst_98D0B2C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_mockup_wall" x="1056" y="32" name="inst_F4B5E47D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="480" y="800" name="inst_285EFDFF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="544" y="800" name="inst_37931693" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="608" y="800" name="inst_9CC7D358" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="672" y="800" name="inst_7847A695" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="736" y="800" name="inst_0C2C05F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="800" y="800" name="inst_488DD3F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="864" y="800" name="inst_335BDB62" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="928" y="800" name="inst_0581A3AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_goto_room4" x="992" y="800" name="inst_D1B9E081" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
