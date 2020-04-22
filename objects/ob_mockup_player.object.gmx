@@ -27,12 +27,12 @@
             <kind>1</kind>
             <string>///Constants
 
-GRAV = 0.4;
-MAX_VSP = 15;
-JUMP_SPEED = 5;
-MOV_SPEED = 6;
-IDLE_ANIMATION_SPEED = 5;
-RUNNING_ANIMATION_SPEEd = 5;
+GRAV = 0.4 * 30 / room_speed;
+MAX_VSP = 15 * 30 / room_speed;
+JUMP_SPEED = 5 * 30 / room_speed;
+MOV_SPEED = 6 * 30 / room_speed;
+IDLE_ANIMATION_SPEED = 5 * 30 / room_speed;
+RUNNING_ANIMATION_SPEEd = 5 * 30 / room_speed;
 
 image_speed = 0;
 </string>

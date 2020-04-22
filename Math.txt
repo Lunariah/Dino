@@ -1,0 +1,19 @@
+if speed % grav == 0 :
+	height = (speed / grav) * (grav + speed) / 2
+	h = s / g * (s+g) / 2
+	
+
+	h = s * (s+g) / 2g  Wrong somehow??
+	
+
+		Déterminant
+		a = 1
+		b = g
+		c = - 2hg
+		
+		delta 	= g² + 8hg
+	
+	s1 = 
+	
+else:
+	height = (speed / grav)(rounded up) * ((speed % grav) + speed) / 2
