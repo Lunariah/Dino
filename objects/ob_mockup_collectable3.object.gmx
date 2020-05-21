@@ -51,7 +51,8 @@
             <string>global.collectable3 = true;
 instance_destroy();
 
-if (global.collectable1 == true) and (global.collectable2 == true) game_end();
+if global.collectable1 and global.collectable2 and global.collectable4 and global.collectable5
+    game_end();
 </string>
           </argument>
         </arguments>
