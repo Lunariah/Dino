@@ -1,7 +1,11 @@
 var x_in = 0;
 var y_in = 0;
 
-if global.free_roam {
+if global.initial_spawn {
+    x_in = 64;
+    y_in = 416;
+}
+else {
     if global.x_out >= room_width { // Exited from right side
         x_in = 0;
         y_in = global.y_out;
@@ -23,10 +27,5 @@ if global.free_roam {
         exit;
     }  
 }
-else {
-    x_in = 64;
-    y_in = 416;
-}
 
-instance_create(x_in, y_in, ob_mockup_player);
-
+instance_create(x_in, y_in, ob_player);

@@ -32,9 +32,94 @@ MAX_VSP = 15;
 JUMP_SPEED = 5;
 MOV_SPEED = 6;
 IDLE_ANIMATION_SPEED = 5;
-RUNNING_ANIMATION_SPEEd = 5;
+RUNNING_ANIMATION_SPEED = 5;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Initial sprite status
 
 image_speed = 0;
+
+if global.g == "down"
+    image_angle = 0;
+else if global.g == "up"
+    image_angle = 180;
+else if global.g == "right"
+    image_angle = 90;
+else if global.g == "left"
+    image_angle = 270; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Declare checkpoint variables
+
+cp_room = room_1;
+cp_x = 64;
+cp_y = 415;
+
+safe_spawn = false;
+
+//death_anim_toggled = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (cp_room != room) room_goto(cp_room);
+x = cp_x;
+y = cp_y;
+safe_spawn = true;
 </string>
           </argument>
         </arguments>
@@ -86,16 +171,52 @@ if (global.vsp &lt; MAX_VSP) {
 }
 
 
-// Determining the direction of gravity
-if not place_free(x, y + 1) 
+// Stuff to do on the ground
+if not place_free(x, y + 1) {
     global.g = "down";
-else if not place_free(x, y - 1) 
+    image_angle = 0;  
+    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn {
+        safe_spawn = true;
+        cp_x = x;
+        cp_y = y;
+        cp_room = room;
+    }
+}
+else if not place_free(x, y - 1) {
     global.g = "up";
-else if not place_free(x + 1, y)
+    image_angle = 180;
+    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn {
+        safe_spawn = true;
+        cp_x = x;
+        cp_y = y;
+        cp_room = room;
+    }
+}
+else if not place_free(x + 1, y) {
     global.g = "right";
-else if not place_free(x - 1, y)
+    image_angle = 90;
+    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn {
+        safe_spawn = true;
+        cp_x = x;
+        cp_y = y;
+        cp_room = room;
+    }
+}
+else if not place_free(x - 1, y) {
     global.g = "left";
-else {// And if we’re airborne, freeze the animation
+    image_angle = 270;
+    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn {
+        safe_spawn = true;
+        cp_x = x;
+        cp_y = y;
+        cp_room = room;
+    }
+}
+else {// Stuff to do airborne
     image_speed = 0;
     image_index = 3;
 }
@@ -105,13 +226,9 @@ else {// And if we’re airborne, freeze the animation
 // Downward gravity
 if (global.g == "down") {
 
-    // Rotate sprite
-    image_angle = 0;    
 
     // Apply gravity
-    if not place_free(x, y + 1) { // If there's a floor beneath us
-       global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    }
+
     if (place_free(x, y +global.vsp)) { // If the frame won't end into a wall
         y +=global.vsp;
     }
@@ -147,9 +264,6 @@ if (global.g == "down") {
 // Upward gravity
 else if (global.g == "up") {
     
-    // Rotate sprite
-    image_angle = 180;
-
     // Apply gravity
     if not place_free(x, y - 1) { // If there's a floor beneath us
        global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
@@ -188,9 +302,7 @@ else if (global.g == "up") {
 
 // Rightward gravity
 else if (global.g == "right") {
-    
-    // Rotate sprite
-    image_angle = 90;
+      
     
     // Apply gravity
     if not place_free(x + 1, y) { // If there's a floor beneath us
@@ -230,10 +342,7 @@ else if (global.g == "right") {
                 
 // Leftward gravity
 else if (global.g == "left") {
-    
-    // Rotate sprite
-    image_angle = 270;
-    
+       
     // Apply gravity
     if not place_free(x - 1, y) { // If there's a floor beneath us
        global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
@@ -654,6 +763,38 @@ else {
           <argument>
             <kind>11</kind>
             <room>room_1</room>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="ob_pit">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Deadly collision
+
+//if death_anim_toggled == false {
+
+    instance_create(0,0,ob_splash_anim);
+    //death_anim_toggled = true;
+//}
+x = cp_x;
+y = cp_y;
+alarm[0] = 20;
+</string>
           </argument>
         </arguments>
       </action>

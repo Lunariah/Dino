@@ -10,7 +10,8 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>global.free_roam = false; // Allows the use of a custom starting point
+  <code>global.initial_spawn = true; // Allows the use of a custom starting point
+global.safe_spawn = true;
 global.g = "down"; // Direction of gravity
 global.vsp = 0; // Movement speed towards the current center of gravity
 global.collectable1 = false;

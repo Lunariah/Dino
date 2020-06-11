@@ -23,6 +23,7 @@
     <sprite>sprites\sprite8</sprite>
     <sprite>sprites\sp_tube</sprite>
     <sprite>sprites\sp_captive</sprite>
+    <sprite>sprites\sp_splash_anim</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_room1</background>
@@ -37,8 +38,8 @@
     <script>scripts\Set_exit.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\ob_mockup_wall</object>
-    <object>objects\ob_mockup_player</object>
+    <object>objects\ob_wall</object>
+    <object>objects\ob_player</object>
     <object>objects\ob_pit</object>
     <object>objects\ob_mockup_goal</object>
     <object>objects\ob_goto_room1</object>
@@ -52,6 +53,7 @@
     <object>objects\ob_mockup_collectable4</object>
     <object>objects\ob_mockup_collectable5</object>
     <object>objects\ob_tube</object>
+    <object>objects\ob_splash_anim</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
