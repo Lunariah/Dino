@@ -1,3 +1,6 @@
+/* DEPRECATED 
+
+
 var x_in = 0;
 var y_in = 0;
 
@@ -29,3 +32,5 @@ else {
 }
 
 instance_create(x_in, y_in, ob_player);
+
+*\

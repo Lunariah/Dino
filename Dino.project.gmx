@@ -36,6 +36,8 @@
   <scripts name="scripts">
     <script>scripts\Spawn_player.gml</script>
     <script>scripts\Set_exit.gml</script>
+    <script>scripts\Game_Init.gml</script>
+    <script>scripts\Change_Rooms.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\ob_wall</object>
