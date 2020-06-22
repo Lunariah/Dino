@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Constants
+            <string>///Init
+
+// Constants and variables
 
 GRAV = 0.4;
 MAX_VSP = 15;
@@ -33,59 +35,30 @@ JUMP_SPEED = 5;
 MOV_SPEED = 6;
 IDLE_ANIMATION_SPEED = 5;
 RUNNING_ANIMATION_SPEED = 5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Initial sprite status
+
+g = side.down;
+vsp = 0;
+rescues[0] = false;
+rescues[1] = false;
+rescues[2] = false;
+rescues[3] = false;
+rescues[4] = false;
+
+
+/// Initial sprite status
 
 image_speed = 0;
 
-if global.g == "down"
+if g == side.down
     image_angle = 0;
-else if global.g == "up"
+else if g == side.up
     image_angle = 180;
-else if global.g == "right"
+else if g == side.right
     image_angle = 90;
-else if global.g == "left"
+else if g == side.left
     image_angle = 270; 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Declare checkpoint variables
+    
+///Declare checkpoint variables
 
 cp_room = room_1;
 cp_x = 64;
@@ -102,25 +75,41 @@ safe_spawn = false;
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>if (cp_room != room) room_goto(cp_room);
-x = cp_x;
-y = cp_y;
-safe_spawn = true;
-</string>
+            <kind>9</kind>
+            <script>Load_Checkpoint</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -166,55 +155,36 @@ else {
 }
 
 // Capping max gravity
-if (global.vsp &lt; MAX_VSP) {
-   global.vsp += GRAV;
+if (vsp &lt; MAX_VSP) {
+   vsp += GRAV;
 }
 
 
 // Stuff to do on the ground
 if not place_free(x, y + 1) {
-    global.g = "down";
+    g = side.down;
     image_angle = 0;  
-    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn {
-        safe_spawn = true;
-        cp_x = x;
-        cp_y = y;
-        cp_room = room;
-    }
+    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn Save_Checkpoint();
 }
 else if not place_free(x, y - 1) {
-    global.g = "up";
+    g = side.up;
     image_angle = 180;
-    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn {
-        safe_spawn = true;
-        cp_x = x;
-        cp_y = y;
-        cp_room = room;
-    }
+    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn Save_Checkpoint();
 }
 else if not place_free(x + 1, y) {
-    global.g = "right";
+    g = side.right;
     image_angle = 90;
-    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn {
-        safe_spawn = true;
-        cp_x = x;
-        cp_y = y;
-        cp_room = room;
-    }
+    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn Save_Checkpoint();
 }
 else if not place_free(x - 1, y) {
-    global.g = "left";
+    g = side.left;
     image_angle = 270;
-    global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn {
-        safe_spawn = true;
-        cp_x = x;
-        cp_y = y;
-        cp_room = room;
-    }
+    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+    if not safe_spawn Save_Checkpoint();
+        
 }
 else {// Stuff to do airborne
     image_speed = 0;
@@ -222,22 +192,21 @@ else {// Stuff to do airborne
 }
     
 
-
 // Downward gravity
-if (global.g == "down") {
+if (g == side.down) {
 
 
     // Apply gravity
-
-    if (place_free(x, y +global.vsp)) { // If the frame won't end into a wall
-        y +=global.vsp;
+    if (place_free(x, y +vsp)) { // If the frame won't end into a wall
+        y +=vsp;
     }
     else {
-        while (place_free(x, y + sign(global.vsp))) { // Move until just before contact
-            y += sign(global.vsp);
+        while (place_free(x, y + sign(vsp))) { // Move until just before contact
+            y += sign(vsp);
         }
     }
     
+    // Apply player movement
     mov = MOV_SPEED * mov_direction;
     while (mov != 0) {                        
         if not place_free(x + mov_direction, y) {
@@ -262,21 +231,22 @@ if (global.g == "down") {
 }
 
 // Upward gravity
-else if (global.g == "up") {
+else if (g == side.up) {
     
     // Apply gravity
     if not place_free(x, y - 1) { // If there's a floor beneath us
-       global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+       vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     }
-    if (place_free(x, y - global.vsp)) { // If the frame won't end into a wall
-        y -= global.vsp;
+    if (place_free(x, y - vsp)) { // If the frame won't end into a wall
+        y -= vsp;
     }
     else {
-        while (place_free(x, y - sign(global.vsp))) { // Move until just before contact
-            y -= sign(global.vsp);
+        while (place_free(x, y - sign(vsp))) { // Move until just before contact
+            y -= sign(vsp);
         }
     }
     
+    // Apply player movement
     mov = MOV_SPEED * mov_direction;
     while (mov != 0) {                        
         if not place_free(x - mov_direction, y) {
@@ -301,22 +271,23 @@ else if (global.g == "up") {
 }
 
 // Rightward gravity
-else if (global.g == "right") {
+else if (g == side.right) {
       
     
     // Apply gravity
     if not place_free(x + 1, y) { // If there's a floor beneath us
-       global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+       vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     }
-    if (place_free(x + global.vsp,y)) { // If the frame won't end into a wall
-        x += global.vsp;
+    if (place_free(x + vsp,y)) { // If the frame won't end into a wall
+        x += vsp;
     }
     else {
-        while (place_free(x + sign(global.vsp), y)) { // Move until just before contact
-            x += sign(global.vsp);
+        while (place_free(x + sign(vsp), y)) { // Move until just before contact
+            x += sign(vsp);
         }
     }
     
+    // Apply player movement
     mov = MOV_SPEED * mov_direction;
     while (mov != 0) {                        
         if not place_free(x, y - mov_direction) {
@@ -341,21 +312,22 @@ else if (global.g == "right") {
 }
                 
 // Leftward gravity
-else if (global.g == "left") {
+else if (g == side.left) {
        
     // Apply gravity
     if not place_free(x - 1, y) { // If there's a floor beneath us
-       global.vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
+       vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     }
-    if (place_free(x - global.vsp,y)) { // If the frame won't end into a wall
-        x -= global.vsp;
+    if (place_free(x - vsp,y)) { // If the frame won't end into a wall
+        x -= vsp;
     }
     else {
-        while (place_free(x - sign(global.vsp), y)) { // Move until just before contact
-            x -= sign(global.vsp);
+        while (place_free(x - sign(vsp), y)) { // Move until just before contact
+            x -= sign(vsp);
         }
     }
     
+    // Apply player movement
     mov = MOV_SPEED * mov_direction;
     while (mov != 0) {                        
         if not place_free(x, y + mov_direction) {
@@ -388,6 +360,30 @@ else {
       </action>
     </event>
     <event eventtype="4" ename="ob_goto_room5">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>safe_spawn</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>601</id>
@@ -432,6 +428,30 @@ else {
     <event eventtype="4" ename="ob_goto_room4">
       <action>
         <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>safe_spawn</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>601</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -472,6 +492,30 @@ else {
       </action>
     </event>
     <event eventtype="4" ename="ob_goto_room3">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>safe_spawn</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>601</id>
@@ -516,9 +560,9 @@ else {
     <event eventtype="4" ename="ob_goto_room2">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -530,13 +574,80 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Change_Rooms(room_2);
-</string>
+            <string>safe_spawn</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>Change_Rooms</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>room_2</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="4" ename="ob_goto_room1">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>safe_spawn</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>601</id>
@@ -597,13 +708,8 @@ else {
             <kind>1</kind>
             <string>/// Deadly collision
 
-//if death_anim_toggled == false {
-
-    instance_create(0,0,ob_splash_anim);
-    //death_anim_toggled = true;
-//}
-x = cp_x;
-y = cp_y;
+instance_create(0,0,ob_death_anim);
+vsp = 0;
 alarm[0] = 20;
 </string>
           </argument>

@@ -34,28 +34,28 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\Spawn_player.gml</script>
-    <script>scripts\Set_exit.gml</script>
     <script>scripts\Game_Init.gml</script>
     <script>scripts\Change_Rooms.gml</script>
+    <script>scripts\Load_Checkpoint.gml</script>
+    <script>scripts\Save_Checkpoint.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\ob_wall</object>
     <object>objects\ob_player</object>
+    <object>objects\ob_wall</object>
     <object>objects\ob_pit</object>
-    <object>objects\ob_mockup_goal</object>
     <object>objects\ob_goto_room1</object>
     <object>objects\ob_goto_room2</object>
     <object>objects\ob_goto_room3</object>
     <object>objects\ob_goto_room4</object>
     <object>objects\ob_goto_room5</object>
-    <object>objects\ob_mockup_collectable1</object>
-    <object>objects\ob_mockup_collectable2</object>
-    <object>objects\ob_mockup_collectable3</object>
-    <object>objects\ob_mockup_collectable4</object>
-    <object>objects\ob_mockup_collectable5</object>
+    <object>objects\ob_captive_abstract</object>
+    <object>objects\ob_captive_0</object>
+    <object>objects\ob_captive_1</object>
+    <object>objects\ob_captive_2</object>
+    <object>objects\ob_captive_3</object>
+    <object>objects\ob_captive_4</object>
     <object>objects\ob_tube</object>
-    <object>objects\ob_splash_anim</object>
+    <object>objects\ob_death_anim</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
