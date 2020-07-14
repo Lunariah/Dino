@@ -38,6 +38,7 @@ RUNNING_ANIMATION_SPEED = 5;
 
 g = side.down;
 vsp = 0;
+airborne = false;
 rescues[0] = false;
 rescues[1] = false;
 rescues[2] = false;
@@ -67,6 +68,32 @@ cp_y = 415;
 safe_spawn = false;
 
 //death_anim_toggled = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Animation
+
+RUNNING_ANIM_SPEED = 5;
+IDLE_ANIM_SPEED = 0.3;
+
+image_speed = IDLE_ANIM_SPEED;
 </string>
           </argument>
         </arguments>
@@ -142,17 +169,9 @@ mov_direction = keyboard_check(vk_right) - keyboard_check(vk_left);
 // Sprite modifications
 
 
-if mov_direction != 0 { // If we’re moving
-    image_xscale = mov_direction;
-    sprite_index = sp_player_running;
-    image_speed = 5; //RUNNING ANIMATION SPEED
-}
-else {
-//    sprite_index = sp_player_idle;
-//    image_speed = 5; //IDLE ANIMATION SPEED
-    image_index = 3;
-    image_speed = 0;
-}
+if mov_direction != 0
+    image_xscale = mov_direction; // Flips the sprite
+
 
 // Capping max gravity
 if (vsp &lt; MAX_VSP) {
@@ -161,34 +180,45 @@ if (vsp &lt; MAX_VSP) {
 
 
 // Stuff to do on the ground
+airborne = false;
 if not place_free(x, y + 1) {
+    image_angle = 0; 
+    if (g == side.right  || g == side.left)
+        y -= 7;
     g = side.down;
-    image_angle = 0;  
     vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     if not safe_spawn Save_Checkpoint();
 }
 else if not place_free(x, y - 1) {
-    g = side.up;
+    
     image_angle = 180;
+    if (g == side.right || g == side.left)
+        y += 7;
+    g = side.up;
     vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     if not safe_spawn Save_Checkpoint();
 }
 else if not place_free(x + 1, y) {
-    g = side.right;
+    
     image_angle = 90;
+    if (g == side.up || g == side.down)
+        x -= 7;
+    g = side.right;
     vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     if not safe_spawn Save_Checkpoint();
 }
 else if not place_free(x - 1, y) {
-    g = side.left;
+    
     image_angle = 270;
+    if (g == side.up || g == side.down)
+        x += 7;
+    g = side.left;
     vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
     if not safe_spawn Save_Checkpoint();
         
 }
-else {// Stuff to do airborne
-    image_speed = 0;
-    image_index = 3;
+else {
+    airborne = true; // Used for animation
 }
     
 
@@ -219,7 +249,7 @@ if (g == side.down) {
         else if place_free(x, y + 1) and not place_free(x - mov_direction, y + 1) { 
             
             // We're falling and need to stick to the wall
-            y += 1;
+            y += 8;
             mov = 0;
             // Automatic gravity will do the rest        
         }
@@ -259,7 +289,7 @@ else if (g == side.up) {
         else if place_free(x, y - 1) and not place_free(x + mov_direction, y - 1) { 
             
             // We're falling and need to stick to the wall
-            y -= 1;
+            y -= 8;
             mov = 0;
             // Automatic gravity will do the rest       
         }
@@ -300,7 +330,7 @@ else if (g == side.right) {
         else if place_free(x + 1, y) and not place_free(x + 1, y + mov_direction) { 
             
             // We're falling and need to stick to the wall
-            x += 1;
+            x += 8;
             mov = 0;
             // Automatic gravity will do the rest   
         }
@@ -340,7 +370,7 @@ else if (g == side.left) {
         else if place_free(x - 1, y) and not place_free(x - 1, y - mov_direction) { 
             
             // We're falling and need to stick to the wall
-            x -= 1;
+            x -= 8;
             mov = 0;
             // Automatic gravity will do the rest        
         }
@@ -711,6 +741,78 @@ else {
 instance_create(0,0,ob_death_anim);
 vsp = 0;
 alarm[0] = 20;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Running animation
+
+if (keyboard_check(vk_left) || keyboard_check(vk_right) || keyboard_check(vk_up) || keyboard_check(vk_down))
+{
+    if (airborne)
+    {
+        image_speed = 0;
+        image_index = 1;
+    }
+    else
+    {
+        sprite_index = sp_player_running;
+        image_speed = RUNNING_ANIM_SPEED;
+        
+        show_debug_message("Running");
+    }
+}
+
+// The sprite is flipped in the step event (for now)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Idle animation
+
+if (!keyboard_check(vk_up) and !keyboard_check(vk_down) and !keyboard_check(vk_right) and !keyboard_check(vk_left))
+{
+    sprite_index = sp_player_idle;
+    image_speed = IDLE_ANIM_SPEED;
+    
+    show_debug_message("Idle");
+}
 </string>
           </argument>
         </arguments>

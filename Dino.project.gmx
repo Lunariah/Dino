@@ -20,10 +20,10 @@
     <sprite>sprites\sp_4</sprite>
     <sprite>sprites\sp_5</sprite>
     <sprite>sprites\sp_mockup_collectable</sprite>
-    <sprite>sprites\sprite8</sprite>
     <sprite>sprites\sp_tube</sprite>
     <sprite>sprites\sp_captive</sprite>
     <sprite>sprites\sp_splash_anim</sprite>
+    <sprite>sprites\sp_debug_player</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_room1</background>
