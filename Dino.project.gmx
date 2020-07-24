@@ -24,6 +24,7 @@
     <sprite>sprites\sp_captive</sprite>
     <sprite>sprites\sp_splash_anim</sprite>
     <sprite>sprites\sp_debug_player</sprite>
+    <sprite>sprites\sp_mockup_button</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_room1</background>
@@ -31,6 +32,7 @@
     <background>background\bg_room3</background>
     <background>background\bg_room4</background>
     <background>background\bg_room5</background>
+    <background>background\bg_title</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -40,6 +42,12 @@
     <script>scripts\Save_Checkpoint.gml</script>
   </scripts>
   <objects name="objects">
+    <objects name="Menu">
+      <object>objects\ob_button_abstract</object>
+      <object>objects\ob_button_play</object>
+      <object>objects\ob_button_credits</object>
+      <object>objects\ob_button_quit</object>
+    </objects>
     <object>objects\ob_player</object>
     <object>objects\ob_wall</object>
     <object>objects\ob_pit</object>
@@ -58,12 +66,15 @@
     <object>objects\ob_death_anim</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_title</room>
+    <room>rooms\room_credits</room>
     <room>rooms\room_init</room>
     <room>rooms\room_1</room>
     <room>rooms\room_2</room>
     <room>rooms\room_3</room>
     <room>rooms\room_4</room>
     <room>rooms\room_5</room>
+    <room>rooms\room_exit</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
