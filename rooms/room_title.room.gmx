@@ -54,6 +54,7 @@
     <instance objName="ob_button_play" x="352" y="192" name="inst_025140BA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_button_credits" x="352" y="352" name="inst_6A27E3DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_button_quit" x="352" y="480" name="inst_9EEE98C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_music_loop" x="32" y="32" name="inst_CB4D6B82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

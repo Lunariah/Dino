@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\music</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sp_mockup_player</sprite>
     <sprite>sprites\sp_player_idle</sprite>
@@ -64,6 +66,7 @@
     <object>objects\ob_captive_4</object>
     <object>objects\ob_tube</object>
     <object>objects\ob_death_anim</object>
+    <object>objects\ob_music_loop</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>
