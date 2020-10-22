@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\music</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sp_mockup_player</sprite>
     <sprite>sprites\sp_player_idle</sprite>
@@ -24,6 +26,14 @@
     <sprite>sprites\sp_captive</sprite>
     <sprite>sprites\sp_splash_anim</sprite>
     <sprite>sprites\sp_debug_player</sprite>
+    <sprite>sprites\sp_mockup_button</sprite>
+    <sprites name="Menu">
+      <sprite>sprites\sp_credits</sprite>
+      <sprite>sprites\sp_start_button</sprite>
+      <sprite>sprites\sp_credits_button</sprite>
+      <sprite>sprites\sp_exit_button</sprite>
+      <sprite>sprites\sp_return_button</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_room1</background>
@@ -31,6 +41,10 @@
     <background>background\bg_room3</background>
     <background>background\bg_room4</background>
     <background>background\bg_room5</background>
+    <background>background\bg_title_empty</background>
+    <background>background\bg_title</background>
+    <background>background\bg_credits</background>
+    <background>background\bg_victory</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -40,6 +54,14 @@
     <script>scripts\Save_Checkpoint.gml</script>
   </scripts>
   <objects name="objects">
+    <objects name="Menu">
+      <object>objects\ob_button_abstract</object>
+      <object>objects\ob_button_play</object>
+      <object>objects\ob_button_credits</object>
+      <object>objects\ob_button_quit</object>
+      <object>objects\ob_button_return</object>
+      <object>objects\ob_return_to_title</object>
+    </objects>
     <object>objects\ob_player</object>
     <object>objects\ob_wall</object>
     <object>objects\ob_pit</object>
@@ -56,14 +78,19 @@
     <object>objects\ob_captive_4</object>
     <object>objects\ob_tube</object>
     <object>objects\ob_death_anim</object>
+    <object>objects\ob_music_loop</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_title</room>
+    <room>rooms\room_credits</room>
     <room>rooms\room_init</room>
     <room>rooms\room_1</room>
     <room>rooms\room_2</room>
     <room>rooms\room_3</room>
     <room>rooms\room_4</room>
     <room>rooms\room_5</room>
+    <room>rooms\room_exit</room>
+    <room>rooms\room_victory</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
