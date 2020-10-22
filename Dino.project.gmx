@@ -27,6 +27,13 @@
     <sprite>sprites\sp_splash_anim</sprite>
     <sprite>sprites\sp_debug_player</sprite>
     <sprite>sprites\sp_mockup_button</sprite>
+    <sprites name="Menu">
+      <sprite>sprites\sp_credits</sprite>
+      <sprite>sprites\sp_start_button</sprite>
+      <sprite>sprites\sp_credits_button</sprite>
+      <sprite>sprites\sp_exit_button</sprite>
+      <sprite>sprites\sp_return_button</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_room1</background>
@@ -34,7 +41,10 @@
     <background>background\bg_room3</background>
     <background>background\bg_room4</background>
     <background>background\bg_room5</background>
+    <background>background\bg_title_empty</background>
     <background>background\bg_title</background>
+    <background>background\bg_credits</background>
+    <background>background\bg_victory</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -49,6 +59,8 @@
       <object>objects\ob_button_play</object>
       <object>objects\ob_button_credits</object>
       <object>objects\ob_button_quit</object>
+      <object>objects\ob_button_return</object>
+      <object>objects\ob_return_to_title</object>
     </objects>
     <object>objects\ob_player</object>
     <object>objects\ob_wall</object>
@@ -78,6 +90,7 @@
     <room>rooms\room_4</room>
     <room>rooms\room_5</room>
     <room>rooms\room_exit</room>
+    <room>rooms\room_victory</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

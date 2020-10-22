@@ -40,7 +40,6 @@
           <argument>
             <kind>1</kind>
             <string>///Record rescue or end the game
-show_debug_message("Collision"); //Debug
 
 other.rescues[self.index] = true;
 
@@ -49,7 +48,7 @@ for (i=0 ; i &lt; 5 ; i++)
     if other.rescues[i] == false 
         exit;
 }
-game_end();
+room_goto(room_victory);
 </string>
           </argument>
         </arguments>
