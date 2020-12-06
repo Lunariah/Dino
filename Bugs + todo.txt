@@ -1,0 +1,13 @@
+BUGS
+------------
+
+- Walking from the first room to the bottow left room makes you snap into the wall
+
+- Using the up and down arrow keys trigger the walking animation
+
+
+
+TODO
+------------
+
+- Display how many dinos have been saved and have yet to be saved on the top right of the screen
