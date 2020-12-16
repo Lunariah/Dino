@@ -1,9 +1,7 @@
 BUGS
 ------------
 
-- Walking from the first room to the bottow left room makes you snap into the wall
 
-- Using the up and down arrow keys trigger the walking animation
 
 
 

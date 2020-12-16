@@ -765,7 +765,7 @@ alarm[0] = 20;
             <kind>1</kind>
             <string>/// Running animation
 
-if (keyboard_check(vk_left) || keyboard_check(vk_right) || keyboard_check(vk_up) || keyboard_check(vk_down))
+if (keyboard_check(vk_left) || keyboard_check(vk_right))
 {
     if (airborne)
     {
@@ -806,7 +806,7 @@ if (keyboard_check(vk_left) || keyboard_check(vk_right) || keyboard_check(vk_up)
             <kind>1</kind>
             <string>/// Idle animation
 
-if (!keyboard_check(vk_up) and !keyboard_check(vk_down) and !keyboard_check(vk_right) and !keyboard_check(vk_left))
+if (!keyboard_check(vk_right) and !keyboard_check(vk_left))
 {
     sprite_index = sp_player_idle;
     image_speed = IDLE_ANIM_SPEED;
