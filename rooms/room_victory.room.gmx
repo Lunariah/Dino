@@ -13,6 +13,11 @@
   <code>with(ob_player)
 {
     instance_destroy();
+}
+
+with(ob_counter)
+{
+    instance_destroy();
 }</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>

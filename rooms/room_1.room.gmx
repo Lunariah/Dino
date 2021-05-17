@@ -227,6 +227,8 @@
     <instance objName="ob_goto_room4" x="864" y="800" name="inst_335BDB62" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_goto_room4" x="928" y="800" name="inst_0581A3AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="ob_goto_room4" x="992" y="800" name="inst_D1B9E081" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_wall" x="448" y="768" name="inst_FBC3CC50" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="ob_wall" x="448" y="800" name="inst_7CAFF112" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

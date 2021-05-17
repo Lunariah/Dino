@@ -24,6 +24,7 @@
     <sprite>sprites\sp_mockup_collectable</sprite>
     <sprite>sprites\sp_tube</sprite>
     <sprite>sprites\sp_captive</sprite>
+    <sprite>sprites\sp_counter</sprite>
     <sprite>sprites\sp_splash_anim</sprite>
     <sprite>sprites\sp_debug_player</sprite>
     <sprite>sprites\sp_mockup_button</sprite>
@@ -79,6 +80,7 @@
     <object>objects\ob_tube</object>
     <object>objects\ob_death_anim</object>
     <object>objects\ob_music_loop</object>
+    <object>objects\ob_counter</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>

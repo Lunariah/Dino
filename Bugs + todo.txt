@@ -1,0 +1,11 @@
+BUGS
+------------
+
+
+
+
+
+TODO
+------------
+
+- Display how many dinos have been saved and have yet to be saved on the top right of the screen
