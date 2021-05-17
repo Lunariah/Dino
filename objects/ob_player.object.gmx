@@ -160,230 +160,180 @@ image_speed = IDLE_ANIM_SPEED;
             <kind>1</kind>
             <string>/// Movement and gravity
 
-mov_direction = keyboard_check(vk_right) - keyboard_check(vk_left);
-// -1 : going left
-// +1 : going right
-// 0 ; standing still
+EDGE_CORRECTION = 8; // Corrects sprite position when the rectangular hitbox gets flipped // Originally 8 // Try 7
+
+switch (g) 
+{
+    case side.down:
+        x_grav = 0;
+        y_grav = 1;
+        break;
+        
+    case side.up:
+        x_grav = 0;
+        y_grav = -1;
+        break;
+        
+    case side.left:
+        x_grav = -1;
+        y_grav = 0;
+        break;
+        
+    case side.right:
+        x_grav = 1;
+        y_grav = 0;
+        break;
+}
 
 
-// Sprite modifications
+if not place_free(x + x_grav, y + y_grav)
+{
+    // Stuff to do on the ground    
+    if(keyboard_check_pressed(vk_space)) {
+        vsp = -JUMP_SPEED;
+        airborne = true; // Used for animation
+    }
+    else  airborne = false;
+    if not safe_spawn Save_Checkpoint(); // Save a checkpoint the first time we touch the ground in any room
+}
+else
+{
+    // Stuff to do airborne
+    airborne = true;
+}
 
+
+// Gravity + Jump
+
+if (vsp &lt; MAX_VSP) {
+    vsp += GRAV;
+}
+
+var x_spd = x_grav * vsp;
+var y_spd = y_grav * vsp;
+
+if (place_free(x + x_spd, y + y_spd)) { // If the frame won’t end into a wall
+    x += x_spd;
+    y += y_spd;
+}
+else {
+    while(place_free(x + sign(x_spd), y + sign(y_spd))) { // Move until just before contact
+        x += sign(x_spd);
+        y += sign(y_spd);
+    }
+}
+
+// Player movement
+// (perpendicular to gravity)
+
+var mov_direction = keyboard_check(vk_right) - keyboard_check(vk_left);
+var x_dir = mov_direction * y_grav;
+var y_dir = -mov_direction * x_grav;
+var x_mov = MOV_SPEED * x_dir;
+var y_mov = MOV_SPEED * y_dir;
+
+while (x_mov != 0 or y_mov != 0) // Both directions are taken into account, but one of them will always be == 0
+{
+    if not place_free(x + x_dir, y + y_dir)
+    {
+        // We’re in front of a wall and need to get on it
+        y -= y_grav;
+        x -= x_grav;
+        x_mov = 0;
+        y_mov = 0;
+    }   
+    
+    else if place_free(x + x_grav, y + y_grav) and not place_free(x - x_dir + x_grav, y - y_dir + y_grav)
+    //   if we’re falling                      and we weren’t falling a pixel ago
+    {
+        // We’re on an edge and need to stick down the wall
+        x += EDGE_CORRECTION * x_grav;
+        y += EDGE_CORRECTION * y_grav;
+        x_mov = 0;
+        y_mov = 0;
+    }
+    
+    else
+    {
+        x += x_dir;
+        x_mov -= x_dir;
+        y += y_dir;
+        y_mov -= y_dir;
+    }
+}
+
+// Gravity switch + sprite transformations
+
+//y -= y_grav * x_grav * 7; // Was meant to be the hitbox correction but should always be y -= 0. Remove if stable
+
+if not place_free(x, y + 1) {
+    g = side.down;
+    image_angle = 0;
+    if(x_grav != 0)
+        y -= 7; // Correction for the rectangular hitbox // Try using EDGE_CORRECTION instead
+}
+else if not place_free(x, y - 1) {
+    g = side.up;
+    image_angle = 180;
+    if(x_grav != 0)
+        y += 7;
+}
+else if not place_free(x + 1, y) {
+    g = side.right;
+    image_angle = 90;
+    if(y_grav != 0)
+        x -= 7;
+}
+else if not place_free(x - 1, y) {
+    g = side.left;
+    image_angle = 270;
+    if(y_grav != 0)
+        x += 7;
+}
 
 if mov_direction != 0
     image_xscale = mov_direction; // Flips the sprite
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Sprite animation
 
-// Capping max gravity
-if (vsp &lt; MAX_VSP) {
-   vsp += GRAV;
-}
-
-
-// Stuff to do on the ground
-airborne = false;
-if not place_free(x, y + 1) {
-    image_angle = 0; 
-    if (g == side.right  || g == side.left)
-        y -= 7;
-    g = side.down;
-    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn Save_Checkpoint();
-}
-else if not place_free(x, y - 1) {
-    
-    image_angle = 180;
-    if (g == side.right || g == side.left)
-        y += 7;
-    g = side.up;
-    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn Save_Checkpoint();
-}
-else if not place_free(x + 1, y) {
-    
-    image_angle = 90;
-    if (g == side.up || g == side.down)
-        x -= 7;
-    g = side.right;
-    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn Save_Checkpoint();
-}
-else if not place_free(x - 1, y) {
-    
-    image_angle = 270;
-    if (g == side.up || g == side.down)
-        x += 7;
-    g = side.left;
-    vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    if not safe_spawn Save_Checkpoint();
-        
-}
-else {
-    airborne = true; // Used for animation
-}
-    
-
-// Downward gravity
-if (g == side.down) {
-
-
-    // Apply gravity
-    if (place_free(x, y +vsp)) { // If the frame won't end into a wall
-        y +=vsp;
+if (keyboard_check(vk_left) ^^ keyboard_check(vk_right))
+{
+    if (airborne) {
+        image_speed = 0;
+        image_index = 1;
     }
     else {
-        while (place_free(x, y + sign(vsp))) { // Move until just before contact
-            y += sign(vsp);
-        }
+        sprite_index = sp_player_running;
+        image_speed = RUNNING_ANIM_SPEED;
     }
-    
-    // Apply player movement
-    mov = MOV_SPEED * mov_direction;
-    while (mov != 0) {                        
-        if not place_free(x + mov_direction, y) {
-        
-            // We're on a wall and need to get on it
-            y -= 1;
-            mov = 0;
-        
-        }
-        else if place_free(x, y + 1) and not place_free(x - mov_direction, y + 1) { 
-            
-            // We're falling and need to stick to the wall
-            y += 8;
-            mov = 0;
-            // Automatic gravity will do the rest        
-        }
-        else {
-            mov -= mov_direction; // Keep moving
-            x += mov_direction;
-        }
-    }
+}
+else
+{
+    sprite_index = sp_player_idle;
+    image_speed = IDLE_ANIM_SPEED;
 }
 
-// Upward gravity
-else if (g == side.up) {
-    
-    // Apply gravity
-    if not place_free(x, y - 1) { // If there's a floor beneath us
-       vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    }
-    if (place_free(x, y - vsp)) { // If the frame won't end into a wall
-        y -= vsp;
-    }
-    else {
-        while (place_free(x, y - sign(vsp))) { // Move until just before contact
-            y -= sign(vsp);
-        }
-    }
-    
-    // Apply player movement
-    mov = MOV_SPEED * mov_direction;
-    while (mov != 0) {                        
-        if not place_free(x - mov_direction, y) {
-        
-            // We're on a wall and need to get on it
-            y += 1;
-            mov = 0;
-        
-        }
-        else if place_free(x, y - 1) and not place_free(x + mov_direction, y - 1) { 
-            
-            // We're falling and need to stick to the wall
-            y -= 8;
-            mov = 0;
-            // Automatic gravity will do the rest       
-        }
-        else {
-            mov -= mov_direction; // Keep moving
-            x -= mov_direction;
-        }
-    }
-}
-
-// Rightward gravity
-else if (g == side.right) {
-      
-    
-    // Apply gravity
-    if not place_free(x + 1, y) { // If there's a floor beneath us
-       vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    }
-    if (place_free(x + vsp,y)) { // If the frame won't end into a wall
-        x += vsp;
-    }
-    else {
-        while (place_free(x + sign(vsp), y)) { // Move until just before contact
-            x += sign(vsp);
-        }
-    }
-    
-    // Apply player movement
-    mov = MOV_SPEED * mov_direction;
-    while (mov != 0) {                        
-        if not place_free(x, y - mov_direction) {
-        
-            // We're on a wall and need to get on it
-            x -= 1;
-            mov = 0;
-        
-        }
-        else if place_free(x + 1, y) and not place_free(x + 1, y + mov_direction) { 
-            
-            // We're falling and need to stick to the wall
-            x += 8;
-            mov = 0;
-            // Automatic gravity will do the rest   
-        }
-        else {
-            mov -= mov_direction; // Keep moving
-            y -= mov_direction;
-        }
-    }
-}
-                
-// Leftward gravity
-else if (g == side.left) {
-       
-    // Apply gravity
-    if not place_free(x - 1, y) { // If there's a floor beneath us
-       vsp = -JUMP_SPEED * keyboard_check_pressed(vk_space);
-    }
-    if (place_free(x - vsp,y)) { // If the frame won't end into a wall
-        x -= vsp;
-    }
-    else {
-        while (place_free(x - sign(vsp), y)) { // Move until just before contact
-            x -= sign(vsp);
-        }
-    }
-    
-    // Apply player movement
-    mov = MOV_SPEED * mov_direction;
-    while (mov != 0) {                        
-        if not place_free(x, y + mov_direction) {
-        
-            // We're on a wall and need to get on it
-            x += 1;
-            mov = 0;
-        
-        }
-        else if place_free(x - 1, y) and not place_free(x - 1, y - mov_direction) { 
-            
-            // We're falling and need to stick to the wall
-            x -= 8;
-            mov = 0;
-            // Automatic gravity will do the rest        
-        }
-        else {
-            mov -= mov_direction; // Keep moving
-            y += mov_direction;
-        }
-    }
-}
-
-else {
-    show_error("Gravity incorrectly set", false);
-}
+// The sprite is flipped and mirror in the movement step
 </string>
           </argument>
         </arguments>
@@ -738,81 +688,11 @@ else {
             <kind>1</kind>
             <string>/// Deadly collision
 
+if (alarm[0] &gt; -1) return 0;
+
 instance_create(0,0,ob_death_anim);
 vsp = 0;
 alarm[0] = 20;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Running animation
-
-if (keyboard_check(vk_left) || keyboard_check(vk_right))
-{
-    if (airborne)
-    {
-        image_speed = 0;
-        image_index = 1;
-    }
-    else
-    {
-        sprite_index = sp_player_running;
-        image_speed = RUNNING_ANIM_SPEED;
-        
-        show_debug_message("Running");
-    }
-}
-
-// The sprite is flipped in the step event (for now)
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Idle animation
-
-if (!keyboard_check(vk_right) and !keyboard_check(vk_left))
-{
-    sprite_index = sp_player_idle;
-    image_speed = IDLE_ANIM_SPEED;
-    
-    show_debug_message("Idle");
-}
 </string>
           </argument>
         </arguments>
