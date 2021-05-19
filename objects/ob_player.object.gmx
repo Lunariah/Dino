@@ -160,7 +160,7 @@ image_speed = IDLE_ANIM_SPEED;
             <kind>1</kind>
             <string>/// Movement and gravity
 
-EDGE_CORRECTION = 8; // Corrects sprite position when the rectangular hitbox gets flipped // Originally 8 // Try 7
+EDGE_CORRECTION = 12; // Corrects sprite position when the rectangular hitbox gets flipped // Originally 8 // Try 7
 
 switch (g) 
 {
@@ -185,12 +185,12 @@ switch (g)
         break;
 }
 
-
 if not place_free(x + x_grav, y + y_grav)
 {
     // Stuff to do on the ground    
     if(keyboard_check_pressed(vk_space)) {
         vsp = -JUMP_SPEED;
+        jumping = true;
         airborne = true; // Used for animation
     }
     else  airborne = false;
@@ -249,6 +249,10 @@ while (x_mov != 0 or y_mov != 0) // Both directions are taken into account, but 
         // We’re on an edge and need to stick down the wall
         x += EDGE_CORRECTION * x_grav;
         y += EDGE_CORRECTION * y_grav;
+        if (!airborne) {
+            x += 15 * x_grav;
+            y += 15 * y_grav;
+        }
         x_mov = 0;
         y_mov = 0;
     }
